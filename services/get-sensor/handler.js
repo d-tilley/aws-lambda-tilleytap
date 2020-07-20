@@ -32,7 +32,7 @@ module.exports.main = async (event, context, callback) => {
 
 async function getSensor(sensorId) {
   let params = {
-    TableName: 'sensors',
+    TableName: 'tilleytap',
     Key: {
       _id: sensorId
     }

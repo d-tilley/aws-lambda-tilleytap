@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: get-sensor
+service: iot-subscriber
 app: TilleyTap
 
 provider:
@@ -24,8 +24,12 @@ provider:
       Action:
         - 'dynamodb:GetItem'
       Resource: 'arn:aws:dynamodb:us-east-2:645386377992:table/tilleytap'
+    - Effect: 'Allow'
+      Action:
+        - 'dynamodb:UpdateItem'
+      Resource: 'arn:aws:dynamodb:us-east-2:645386377992:table/tilleytap'
 
 functions:
   getSensor:
     handler: handler.main
-    name: tilleytap-getsensor-${opt:stage, self:provider.stage, 'dev'}
+    name: tilleytap-iot-subscriber-${opt:stage, self:provider.stage, 'dev'}
